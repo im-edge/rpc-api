@@ -57,6 +57,10 @@ class Hydrator
             $type = substr($type, 0, -5);
         }
 
+        if ($value === null) {
+            return new InvalidArgumentException(sprintf('Cannot cast null to %s', $type));
+        }
+
         if (str_ends_with($type, '[]')) {
             $type = substr($type, 0, -2);
             $result = [];
