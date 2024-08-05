@@ -16,7 +16,13 @@ class Hydrator
         self::$registeredTypes['\\' . ltrim($type, '\\')] = $hydrator;
     }
 
-    protected static function classInstance(string $type, mixed $value): object
+    /**
+     * @template T of JsonSerialization
+     * @param class-string<T> $type
+     * @param mixed $value
+     * @return T
+     */
+    protected static function classInstance(string $type, mixed $value): JsonSerialization
     {
         $implements = class_implements($type);
 
